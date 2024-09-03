@@ -3,17 +3,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Pawn.h"
-#include "MyPawn.generated.h"
+#include "GameFramework/Actor.h"
+#include "Ball.generated.h"
 
 UCLASS()
-class ARKANOID_ULTRA_API AMyPawn : public APawn
+class ARKANOID_ULTRA_API ABall : public AActor
 {
 	GENERATED_BODY()
-
+	
 public:
-	// Sets default values for this pawn's properties
-	AMyPawn();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite) double Speed = 500.0;
+
+	// Sets default values for this actor's properties
+	ABall();
+	~ABall();
 
 protected:
 	// Called when the game starts or when spawned
@@ -23,7 +26,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+private:
+	FVector2D direction;
+	FHitResult* outSweepHitResult;
 };
