@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -8,9 +6,6 @@
 #include <string>
 #include "EditorStartupCommandsExecutor.generated.h"
 
-/**
- * 
- */
 UCLASS(Blueprintable)
 class ARKANOID_ULTRA_API UEditorStartupCommandsExecutor : public UObject
 {
@@ -20,7 +15,7 @@ public:
 	UFUNCTION(BlueprintCallable) void Start();
 
 private:
-	std::vector<std::string> commands = {
+	const std::vector<std::string> commands = {
 		"-culture=en",
 		"stat fps"
 	};

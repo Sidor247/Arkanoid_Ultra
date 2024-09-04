@@ -1,27 +1,15 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "Brick.h"
+#include <Ball.h>
+#include <Kismet/KismetSystemLibrary.h>
 
-// Sets default values
 ABrick::ABrick()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
+	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("StaticMesh"));
+	OnActorHit.AddDynamic(this, &ABrick::OnBallHit);
 }
 
-// Called when the game starts or when spawned
-void ABrick::BeginPlay()
+void ABrick::OnBallHit(AActor*, AActor* OtherActor, FVector, const FHitResult&)
 {
-	Super::BeginPlay();
-	
+	if (dynamic_cast<ABall*>(OtherActor))
+		Destroy();
 }
-
-// Called every frame
-void ABrick::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-

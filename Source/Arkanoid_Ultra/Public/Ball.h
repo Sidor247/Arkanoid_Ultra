@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -12,21 +10,15 @@ class ARKANOID_ULTRA_API ABall : public AActor
 	GENERATED_BODY()
 	
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) double Speed = 500.0;
+	UPROPERTY(EditInstanceOnly, Category = "Editables") UStaticMeshComponent* StaticMesh = nullptr;
+	UPROPERTY(EditInstanceOnly, Category = "Editables") double Speed = 500.0;
 
-	// Sets default values for this actor's properties
 	ABall();
-	~ABall();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
+public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
 	FVector2D direction;
-	FHitResult* outSweepHitResult;
+	FHitResult outSweepHitResult;
 };
