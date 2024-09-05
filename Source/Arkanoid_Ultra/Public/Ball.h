@@ -8,7 +8,7 @@ UCLASS()
 class ARKANOID_ULTRA_API ABall : public AActor
 {
 	GENERATED_BODY()
-	
+
 public:
 	UPROPERTY(EditInstanceOnly, Category = "Editables") UStaticMeshComponent* StaticMesh = nullptr;
 	UPROPERTY(EditInstanceOnly, Category = "Editables") double Speed = 500.0;

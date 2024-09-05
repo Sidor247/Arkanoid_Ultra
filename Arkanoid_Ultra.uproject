@@ -10,9 +10,7 @@
 			"LoadingPhase": "Default",
 			"AdditionalDependencies": [
 				"Engine",
-				"Blutility",
-				"CoreUObject",
-				"EnhancedInput"
+				"CoreUObject"
 			]
 		}
 	],
@@ -24,8 +22,5 @@
 				"Editor"
 			]
 		}
-	],
-	"TargetPlatforms": [
-		"Windows"
 	]
 }

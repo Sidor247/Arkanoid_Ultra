@@ -8,7 +8,7 @@ UCLASS()
 class ARKANOID_ULTRA_API ABrick : public AActor
 {
 	GENERATED_BODY()
-	
+
 public:
 	UPROPERTY(EditInstanceOnly, Category = "Editables") UStaticMeshComponent* StaticMesh = nullptr;
 

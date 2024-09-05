@@ -1,7 +1,7 @@
 #include "Ball.h"
 #include <Kismet/KismetMathLibrary.h>
 
-ABall::ABall(): AActor()
+ABall::ABall() : AActor()
 {
 	PrimaryActorTick.bCanEverTick = true;
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("StaticMesh"));
@@ -20,4 +20,3 @@ void ABall::Tick(float DeltaTime)
 		direction = FVector2D(reflected);
 	}
 }
-

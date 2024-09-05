@@ -14,7 +14,7 @@ public:
 	APlatformPlayerController();
 
 	UPROPERTY(EditInstanceOnly, Category = "Editables") double Speed = 500.0;
-	
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void OnPossess(APawn* PawnToPossess) override;

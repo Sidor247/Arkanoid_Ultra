@@ -1,6 +1,5 @@
 #include "PlatformPlayerController.h"
 #include <EnhancedInputLibrary.h>
-#include <Blueprint/WidgetBlueprintLibrary.h>
 #include <Kismet/GameplayStatics.h>
 
 APlatformPlayerController::APlatformPlayerController() {}
@@ -17,7 +16,7 @@ void APlatformPlayerController::BeginPlay()
 void APlatformPlayerController::OnPossess(APawn* PawnToPossess)
 {
     Super::OnPossess(PawnToPossess);
-	pawn = PawnToPossess;
+    pawn = PawnToPossess;
 }
 
 void APlatformPlayerController::PlatformMoveCallback(float AxisValue)
