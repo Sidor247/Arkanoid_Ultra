@@ -19,6 +19,8 @@ public:
 
 	UPROPERTY(EditInstanceOnly, Category = "Editables") double BallOffset = 100.0;
 
+	UPROPERTY(EditInstanceOnly, Category = "Editables") int RemainingBalls = 3;
+
 	virtual void BeginPlay() override;
 
 	virtual void Tick(float DeltaSeconsds) override;
@@ -27,7 +29,10 @@ public:
 
 	void Move(float AxisValue);
 	void ReleaseBall();
+	void OnBallDestroy();
 
 private:
 	ABall* ballToRelease = nullptr;
+
+	void spawnNewBall();
 };

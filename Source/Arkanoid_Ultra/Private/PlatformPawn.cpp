@@ -7,12 +7,7 @@
 void APlatformPawn::BeginPlay()
 {
 	Super::BeginPlay();
-	FVector location = GetActorLocation();
-	location.X += BallOffset;
-	FTransform transform = FTransform::Identity;
-	transform.SetLocation(location);
-	ABall* spawnedBall = GetWorld()->SpawnActor<ABall>(BallClass, transform);
-	ballToRelease = spawnedBall;
+	spawnNewBall();
 }
 
 void APlatformPawn::Tick(float DeltaSeconsds)
@@ -48,4 +43,21 @@ void APlatformPawn::ReleaseBall()
 		ballToRelease->Throw();
 		ballToRelease = nullptr;
 	}
+}
+
+void APlatformPawn::OnBallDestroy()
+{
+	if (RemainingBalls > 0)
+		spawnNewBall();
+}
+
+void APlatformPawn::spawnNewBall()
+{
+	RemainingBalls--;
+	FVector location = GetActorLocation();
+	location.X += BallOffset;
+	FTransform transform = FTransform::Identity;
+	transform.SetLocation(location);
+	ABall* spawnedBall = GetWorld()->SpawnActor<ABall>(BallClass, transform);
+	ballToRelease = spawnedBall;
 }
