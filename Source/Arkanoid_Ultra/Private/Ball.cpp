@@ -5,8 +5,13 @@ ABall::ABall() : AActor()
 {
 	PrimaryActorTick.bCanEverTick = true;
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("StaticMesh"));
-	direction = FVector2D(UKismetMathLibrary::RandomUnitVector());
+	direction = FVector2D::Zero();
 	outSweepHitResult = FHitResult();
+}
+
+void ABall::Throw()
+{
+	direction = FVector2D(1.0, UKismetMathLibrary::RandomFloatInRange(-1.0, 1.0));
 }
 
 void ABall::Tick(float DeltaTime)

@@ -11,7 +11,23 @@ class ARKANOID_ULTRA_API APlatformPawn : public APawn
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditInstanceOnly, Category = "Editables") UStaticMeshComponent* StaticMeshComponent = nullptr;
+	UPROPERTY(EditInstanceOnly, Category = "Editables") UStaticMeshComponent* StaticMeshComponent;
+
+	UPROPERTY(EditInstanceOnly, Category = "Editables") TSubclassOf<class ABall> BallClass;
+
+	UPROPERTY(EditInstanceOnly, Category = "Editables") double Speed = 500.0;
+
+	UPROPERTY(EditInstanceOnly, Category = "Editables") double BallOffset = 100.0;
+
+	virtual void BeginPlay() override;
+
+	virtual void Tick(float DeltaSeconsds) override;
 
 	APlatformPawn();
+
+	void Move(float AxisValue);
+	void ReleaseBall();
+
+private:
+	ABall* ballToRelease = nullptr;
 };

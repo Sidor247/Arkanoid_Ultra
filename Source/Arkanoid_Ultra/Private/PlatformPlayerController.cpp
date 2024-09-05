@@ -10,18 +10,22 @@ void APlatformPlayerController::BeginPlay()
     if (InputComponent)
     {
         InputComponent->BindAxis("PlatformMove", this, &APlatformPlayerController::PlatformMoveCallback);
+        InputComponent->BindAction("BallRelease", EInputEvent::IE_Pressed, this, &APlatformPlayerController::PlatformBallReleaseCallback);
     }
 }
 
 void APlatformPlayerController::OnPossess(APawn* PawnToPossess)
 {
     Super::OnPossess(PawnToPossess);
-    pawn = PawnToPossess;
+    platformPawn = Cast<APlatformPawn>(PawnToPossess);
 }
 
 void APlatformPlayerController::PlatformMoveCallback(float AxisValue)
 {
-    float deltaSeconds = UGameplayStatics::GetWorldDeltaSeconds(GetWorld());
-    FVector deltaLocation(0.0, deltaSeconds * AxisValue * Speed, 0.0);
-    pawn->AddActorWorldOffset(deltaLocation, true);
+    platformPawn->Move(AxisValue);
+}
+
+void APlatformPlayerController::PlatformBallReleaseCallback()
+{
+    platformPawn->ReleaseBall();
 }

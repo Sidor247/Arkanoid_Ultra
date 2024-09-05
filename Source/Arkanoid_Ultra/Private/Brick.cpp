@@ -10,6 +10,6 @@ ABrick::ABrick()
 
 void ABrick::OnBallHit(AActor*, AActor* OtherActor, FVector, const FHitResult&)
 {
-	if (dynamic_cast<ABall*>(OtherActor))
+	if (Cast<ABall>(OtherActor))
 		Destroy();
 }

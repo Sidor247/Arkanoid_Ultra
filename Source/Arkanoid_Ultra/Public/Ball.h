@@ -15,6 +15,8 @@ public:
 
 	ABall();
 
+	void Throw();
+
 public:
 	virtual void Tick(float DeltaTime) override;
 
