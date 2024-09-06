@@ -23,4 +23,5 @@ private:
 
 	void PlatformMoveCallback(float AxisValue);
 	void PlatformBallReleaseCallback();
+	void Exit();
 };

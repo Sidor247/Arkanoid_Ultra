@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include <EnhancedInputLibrary.h>
+#include <HUDWidgetBase.h>
 #include "PlatformPawn.generated.h"
 
 UCLASS()
@@ -21,6 +22,8 @@ public:
 
 	UPROPERTY(EditInstanceOnly, Category = "Editables") int RemainingBalls = 3;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI") TSubclassOf<UHUDWidgetBase> WidgetClass;
+
 	virtual void BeginPlay() override;
 
 	virtual void Tick(float DeltaSeconsds) override;
@@ -33,6 +36,6 @@ public:
 
 private:
 	ABall* ballToRelease = nullptr;
-
+	UHUDWidgetBase* hudInstance = nullptr;
 	void spawnNewBall();
 };

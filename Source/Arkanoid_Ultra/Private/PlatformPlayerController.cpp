@@ -11,6 +11,7 @@ void APlatformPlayerController::BeginPlay()
     {
         InputComponent->BindAxis("PlatformMove", this, &APlatformPlayerController::PlatformMoveCallback);
         InputComponent->BindAction("BallRelease", EInputEvent::IE_Pressed, this, &APlatformPlayerController::PlatformBallReleaseCallback);
+        InputComponent->BindAction("CloseGame", EInputEvent::IE_Pressed, this, &APlatformPlayerController::Exit);
     }
 }
 
@@ -28,4 +29,9 @@ void APlatformPlayerController::PlatformMoveCallback(float AxisValue)
 void APlatformPlayerController::PlatformBallReleaseCallback()
 {
     platformPawn->ReleaseBall();
+}
+
+void APlatformPlayerController::Exit()
+{
+    UKismetSystemLibrary::QuitGame(GetWorld(), this, EQuitPreference::Quit, false);
 }
