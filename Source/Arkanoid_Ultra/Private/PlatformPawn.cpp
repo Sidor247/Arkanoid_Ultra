@@ -14,6 +14,11 @@ APlatformPawn::APlatformPawn()
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
 }
 
+void APlatformPawn::TriggerOnDeathEvent()
+{
+	OnDeathEvent.Broadcast();
+}
+
 void APlatformPawn::BeginPlay()
 {
 	Super::BeginPlay();
@@ -55,6 +60,8 @@ void APlatformPawn::OnBallDestroy()
 {
 	if (RemainingBalls > 0)
 		spawnNewBall();
+	else
+		TriggerOnDeathEvent();
 }
 
 void APlatformPawn::spawnNewBall()

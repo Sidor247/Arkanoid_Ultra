@@ -17,9 +17,15 @@ public:
 protected:
 	virtual void BeginPlay() override;
 	virtual void OnPossess(APawn* PawnToPossess) override;
+	UFUNCTION(BlueprintNativeEvent, Category = "Events") void OnBeginPlayCustom();
+	UFUNCTION(BlueprintNativeEvent, Category = "Events") void OnPawnDeathNativeEvent();
+	virtual void OnBeginPlayCustom_Implementation();
+	virtual void OnPawnDeathNativeEvent_Implementation();
+	UFUNCTION() void OnPawnDeath();
 
 private:
 	APlatformPawn* platformPawn = nullptr;
+	bool IsEventBounded = false;
 
 	void PlatformMoveCallback(float AxisValue);
 	void PlatformBallReleaseCallback();

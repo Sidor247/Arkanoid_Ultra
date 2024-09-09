@@ -6,6 +6,8 @@
 #include <HUDWidgetBase.h>
 #include "PlatformPawn.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDeathEvent);
+
 UCLASS()
 class ARKANOID_ULTRA_API APlatformPawn : public APawn
 {
@@ -24,6 +26,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI") TSubclassOf<UHUDWidgetBase> WidgetClass;
 
+	UPROPERTY(BlueprintAssignable, Category = "Custom Events") FOnDeathEvent OnDeathEvent;
+	UFUNCTION(BlueprintCallable, Category = "Custom Events") void TriggerOnDeathEvent();
+
 	virtual void BeginPlay() override;
 
 	virtual void Tick(float DeltaSeconsds) override;
@@ -36,6 +41,6 @@ public:
 
 private:
 	ABall* ballToRelease = nullptr;
-	UHUDWidgetBase* hudInstance = nullptr;
+	UPROPERTY() UHUDWidgetBase* hudInstance = nullptr;
 	void spawnNewBall();
 };
